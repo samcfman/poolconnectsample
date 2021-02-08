@@ -267,6 +267,7 @@ app.post("/searchAccount", function(req, res) {
 	
 	try {
 		pool.connect (async (err, poolclient, release) => {
+			console.log ("Inside try");
 			if (err) {
 				var errorDetails = 'Error in Pool Connect';
 				console.error ('pool.connect error :' + err );
@@ -277,6 +278,7 @@ app.post("/searchAccount", function(req, res) {
 			
 		try{	
 			var metadata;;
+				console.log ("Inside getmetadata try");
 
 				var metadataApp = await getMetadataAppCustFunc (poolclient,request.market, request.applicationName);
 
