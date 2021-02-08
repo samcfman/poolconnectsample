@@ -262,7 +262,7 @@ app.post("/searchAccount", function(req, res) {
 	var requestMap = new Map();
 	
 	//console.log ("request map length ::::" +requestMap.size);
-	console.log ("applicationName in request::::" + requestMap.get('applicationName'));
+	//console.log ("applicationName in request::::" + requestMap.get('applicationName'));
 	
 	
 	try {
@@ -281,11 +281,11 @@ app.post("/searchAccount", function(req, res) {
 				var metadataApp = await getMetadataAppCustFunc (poolclient,request.market, request.applicationName);
 
 				if(metadataApp.length > 0) {
-					//console.log ('metadataApp :' + metadataApp);
+					console.log ('metadataApp :' + metadataApp);
 					metadata = metadataApp;
 				}	
 				else {
-				//	console.log ('metadataAll :' + metadataAll);
+					console.log ('metadataAll :' + metadataAll);
 					metadata = await getMetadataAllCustFunc (poolclient,request.market);
 				}
 	
