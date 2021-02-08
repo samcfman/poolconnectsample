@@ -1,0 +1,21 @@
+{
+  "name": "OneAPI",
+  "version": "1.0.0",
+  "description": "App to provide interface for customer and lead search functionality",
+  "main": "server.js",
+  "scripts": {
+        "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://git.heroku.com/searchapi11092020.git"
+  },
+ 
+  "dependencies": {
+    "basic-auth": "^2.0.1",
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "mongodb": "^2.0.43",
+    "pg": "^7.8.0"
+  }
+}
