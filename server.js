@@ -50,15 +50,16 @@ const client = new Client({
   ssl:true,
 });
 console.log('start');
-console.log('process.env.DATABASE_URL::::' + process.env.DATABASE_URL);
+//console.log('process.env.DATABASE_URL::::' + process.env.DATABASE_URL);
 
-client.connect(err => {
+client.connect();
+/*client.connect(err => {
   if (err) {
     console.error('connection error', err.stack)
   } else {
     console.log('connected')
   }
-});
+});*/
 
 const pool = new Pool ({
 	connectionString: process.env.DATABASE_URL,
