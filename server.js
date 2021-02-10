@@ -265,7 +265,7 @@ app.post("/searchAccount", function(req, res) {
 	//console.log ("applicationName in request::::" + requestMap.get('applicationName'));
 	
 	
-	try {
+	try {console.log ("Inside try");
 		pool.connect (async (err, poolclient, release) => {
 			console.log ("Inside try");
 			if (err) {
