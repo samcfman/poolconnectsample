@@ -46,11 +46,11 @@ const { Client, Pool } = require ('pg');
 const { release } = require("os");
 
 const client = new Client({
-  connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_CONNECTION_POOL_URL,
   ssl: true,
 });
 console.log('start');
-//console.log('process.env.DATABASE_URL::::' + process.env.DATABASE_URL);
+console.log('process.env.DATABASE_CONNECTION_POOL_URL::::' + process.env.DATABASE_CONNECTION_POOL_URL);
 
 client.connect(err => {
   if (err) {
@@ -61,7 +61,7 @@ client.connect(err => {
 });
 
 const pool = new Pool ({
-	connectionString: process.env.DATABASE_CONNECTION_POOL_URL,
+	connectionString: process.env.DATABASE_URL,
 	//connectionString: process.env.HEROKU_POSTGRESQL_BLUE_URL,
 	
 	ssl: {
