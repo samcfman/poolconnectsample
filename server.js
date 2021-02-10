@@ -259,7 +259,7 @@ app.post("/searchAccount", function(req, res) {
 	console.log ("request ::::" +request);
 	
 	//const requestObject = JSON.parse(request);
-	var requestMap = new Map();
+	
 	
 	//console.log ("request map length ::::" +requestMap.size);
 	//console.log ("applicationName in request::::" + requestMap.get('applicationName'));
@@ -300,7 +300,7 @@ app.post("/searchAccount", function(req, res) {
 					var searchType = request.searchType;
 					console.log ("searchType in server.js :::::" + searchType);
 					
-					
+					var requestMap = new Map();
 					
 					if(searchType.length > 0){
 						
