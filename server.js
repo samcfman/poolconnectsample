@@ -8,7 +8,7 @@ var app = express();
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
-const { Client, Pool } = require ('pg');
+//const { Client, Pool } = require ('pg');
 const { release } = require("os");
 
 //var auth = require("basic-auth");
