@@ -53,7 +53,7 @@ const client = new Client({
 console.log('start');
 
 client.connect(err => {
-	console.log('inside client.connect')
+	
   if (err) {
     console.error('connection error', err.stack)
   } else {
@@ -64,12 +64,12 @@ client.connect(err => {
 const pool = new Pool ({
 	connectionString: process.env.DATABASE_URL,
 	//connectionString: process.env.HEROKU_POSTGRESQL_BLUE_URL,
-	
+	console.log('connected')
 	ssl: {
 		rejectUnauthorized: false
 	  },
 	//max: 500  	
-console.log('connected')
+
 });
 
 
