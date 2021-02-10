@@ -46,17 +46,17 @@ const { Client, Pool } = require ('pg');
 const { release } = require("os");
 
 const client = new Client({
-  connectionString: process.env.DATABASE_CONNECTION_POOL_URL,
+  connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
 console.log('start');
-console.log('process.env.DATABASE_CONNECTION_POOL_URL::::' + process.env.DATABASE_CONNECTION_POOL_URL);
+//console.log('process.env.DATABASE_URL::::' + process.env.DATABASE_URL);
 
 client.connect(err => {
   if (err) {
-    console.error('connection error', err.stack);
+    console.error('connection error', err.stack)
   } else {
-    console.log('connected');
+    console.log('connected')
   }
 });
 
