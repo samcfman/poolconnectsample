@@ -21,6 +21,8 @@ var poolConnectionClient;
 
 module.exports.client = poolConnectionClient;
 
+module.exports.client = client;
+
 String.prototype.equalsIgnoreCase = function (compareString) 
 	{ return this.toUpperCase() === compareString.toUpperCase(); 
 	};
@@ -73,7 +75,7 @@ const pool = new Pool ({
 });
 
 
-module.exports.client = client;
+
 
 function basicAuth(req, res, cb) {
 	console.log('Inside basic auth:::::::::::');
