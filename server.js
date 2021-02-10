@@ -46,11 +46,12 @@ const { Client, Pool } = require ('pg');
 const { release } = require("os");
 
 const client = new Client({
-  //connectionString: process.env.DATABASE_URL,
-  connectionString: 'postgres://u1pirmr9mss9hn:pbf22ee09fd33ea7c2b6b63c368dbebf95c3a712a8806da5e6e6d3096da1a86e8@ec2-54-150-218-193.ap-northeast-1.compute.amazonaws.com:5433/d21d0n66jo2spp',
+  connectionString: process.env.DATABASE_URL,
   ssl:true,
 });
 console.log('start');
+console.log('process.env.DATABASE_URL::::' + process.env.DATABASE_URL);
+
 client.connect(err => {
   if (err) {
     console.error('connection error', err.stack)
