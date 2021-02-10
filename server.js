@@ -8,7 +8,7 @@ var app = express();
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
-//const { Client, Pool } = require ('pg');
+const { Client, Pool } = require ('pg');
 const { release } = require("os");
 
 //var auth = require("basic-auth");
@@ -44,7 +44,7 @@ function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
   res.status(code || 500).json({"error": message});
 }
-const { Client } = require ('pg');
+//const { Client } = require ('pg');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
