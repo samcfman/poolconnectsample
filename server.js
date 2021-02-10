@@ -73,7 +73,7 @@ const pool = new Pool ({
 });
 
 
-module.exports.client = client;
+//module.exports.client = client;
 
 function basicAuth(req, res, cb) {
 	console.log('Inside basic auth:::::::::::');
