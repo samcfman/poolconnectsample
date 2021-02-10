@@ -69,7 +69,7 @@ const pool = new Pool ({
 		rejectUnauthorized: false
 	  },
 	//max: 500  	
-
+console.log('connected')
 });
 
 
