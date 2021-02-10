@@ -8,18 +8,14 @@ var app = express();
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
-const { Client, Pool } = require ('pg');
-const { release } = require("os");
-
 //var auth = require("basic-auth");
 //var user = auth.parse(req.getHeader('Proxy-Authorization'));
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
+// ** TUNE **
 var poolConnectionClient;
-
-module.exports.client = poolConnectionClient;
 
 String.prototype.equalsIgnoreCase = function (compareString) 
 	{ return this.toUpperCase() === compareString.toUpperCase(); 
@@ -46,14 +42,15 @@ function handleError(res, reason, message, code) {
 }
 //const { Client } = require ('pg');
 
+const { Client, Pool } = require ('pg');
+const { release } = require("os");
+
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl:true,
 });
 console.log('start');
-
 client.connect(err => {
-
   if (err) {
     console.error('connection error', err.stack)
   } else {
@@ -74,6 +71,7 @@ const pool = new Pool ({
 
 
 //module.exports.client = client;
+module.exports.client = poolConnectionClient;
 
 function basicAuth(req, res, cb) {
 	console.log('Inside basic auth:::::::::::');
