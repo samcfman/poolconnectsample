@@ -44,7 +44,7 @@ function handleError(res, reason, message, code) {
   console.log("ERROR: " + reason);
   res.status(code || 500).json({"error": message});
 }
-//const { Client } = require ('pg');
+const { Client } = require ('pg');
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
