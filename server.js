@@ -205,7 +205,7 @@ async function getDealerRecord (client,isRetailCopyAtCompanyEnabled, isDealerDef
 		
 		console.log('dealerQueryParam in server.js :::::::::::::' + dealerQueryParam);
 		
-		const resdealer = await client.query(dealerQuery, dealerQueryParam);
+		const resdealer = client.query(dealerQuery, dealerQueryParam);
 		
 		var dealerDetails =  resdealer.rows;
 		
@@ -325,7 +325,7 @@ app.post("/searchAccount", function(req, res) {
 					
 					//var queryMap = retailSearch.getDealerRecord(isRetailCopyAtCompanyEnabled, isDealerDefaultFlag, request);
 					
-					dealerId = await getDealerRecord (client,isRetailCopyAtCompanyEnabled, isDealerDefaultFlag, request);
+					dealerId = getDealerRecord (client,isRetailCopyAtCompanyEnabled, isDealerDefaultFlag, request);
 					
 					console.log("dealer id from query that goes to performSearch :::::::::" + dealerId);		
 					
