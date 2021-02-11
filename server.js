@@ -50,7 +50,7 @@ const client = new Client({
   ssl: { rejectUnauthorized: false }
 });
 console.log('start');
-console.log("Database_URL", process.env.DATABASE_URL);
+//console.log("Database_URL", process.env.DATABASE_URL);
 
 client.connect(err => {
   if (err) {
