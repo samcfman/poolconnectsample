@@ -61,8 +61,8 @@ client.connect(err => {
 });
 
 const pool = new Pool ({
-	connectionString: process.env.DATABASE_CONNECTION_POOL_URL,
-	//connectionString: process.env.HEROKU_POSTGRESQL_BLUE_URL,
+	//connectionString: process.env.DATABASE_URL,
+	connectionString: process.env.HEROKU_POSTGRESQL_BLUE_URL,
 	
 	ssl: {
 		rejectUnauthorized: false
