@@ -260,7 +260,7 @@ app.post("/searchAccount", function(req, res) {
 	
 		
 	//console.log ("request map length ::::" +requestMap.size);
-	//console.log ("applicationName in request::::" + requestMap.get('applicationName'));
+	console.log ("applicationName in request::::" + request.applicationName);
 	
 	
 	try {
