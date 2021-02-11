@@ -283,7 +283,7 @@ app.post("/searchAccount", function(req, res) {
 					metadata = metadataApp;
 				}	
 				else {
-					console.log ('metadataAll :' + metadataAll);
+					//console.log ('metadataAll :' + metadataAll);
 					metadata = await getMetadataAllCustFunc (poolclient,request.market);
 				}
 	
