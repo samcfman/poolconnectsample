@@ -50,6 +50,7 @@ const client = new Client({
   ssl: true,
 });
 console.log('start');
+console.log("Database_URL", process.env.DATABASE_URL);
 
 client.connect(err => {
   if (err) {
@@ -65,7 +66,7 @@ const pool = new Pool ({
 	
 	ssl: {
 		rejectUnauthorized: false
-	  },
+	  }
 	//max: 500  	
 
 });
