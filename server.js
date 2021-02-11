@@ -50,7 +50,6 @@ const client = new Client({
   ssl: true,
 });
 console.log('start');
-//console.log('process.env.DATABASE_URL::::' + process.env.DATABASE_URL);
 
 client.connect(err => {
   if (err) {
@@ -258,16 +257,13 @@ app.post("/searchAccount", function(req, res) {
 	var request = reqinput.In_Data;
 	console.log ("request ::::" +request);
 	
-	//const requestObject = JSON.parse(request);
-	
-	
+		
 	//console.log ("request map length ::::" +requestMap.size);
 	//console.log ("applicationName in request::::" + requestMap.get('applicationName'));
 	
 	
 	try {
 		pool.connect (async (err, poolclient, release) => {
-			console.log ("Inside try");
 			if (err) {
 				var errorDetails = 'Error in Pool Connect';
 				console.error ('pool.connect error :' + err );
@@ -277,9 +273,8 @@ app.post("/searchAccount", function(req, res) {
 			poolConnectionClient = poolclient;
 			
 		try{	
-			var metadata;;
-				console.log ("Inside getmetadata try");
-
+			var metadata;
+				
 				var metadataApp = await getMetadataAppCustFunc (poolclient,request.market, request.applicationName);
 
 				if(metadataApp.length > 0) {
