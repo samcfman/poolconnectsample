@@ -47,7 +47,7 @@ const { release } = require("os");
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
-  ssl: true
+  ssl: true,
 });
 console.log('start');
 console.log("Database_URL", process.env.DATABASE_URL);
@@ -66,7 +66,7 @@ const pool = new Pool ({
 	
 	ssl: {
 		rejectUnauthorized: false
-	  }
+	  },
 	//max: 500  	
 
 });

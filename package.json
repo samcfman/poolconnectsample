@@ -15,9 +15,8 @@
     "body-parser": "^1.13.3",
     "express": "^4.13.3",
     "mongodb": "^2.0.43",
-    "pg": "^7.8.0"
+    "pg": "^8.5.1"
   },
-  "devDependencies": {},
   "author": "",
   "license": "ISC"
 }
