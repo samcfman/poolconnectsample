@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "App to provide interface for customer and lead search functionality",
   "main": "server.js",
+  "engines": {
+    "node": "12.20.1"
+  },  
   "scripts": {
     "start": "node server.js"
   },
