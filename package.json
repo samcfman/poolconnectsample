@@ -3,12 +3,15 @@
   "version": "1.0.0",
   "description": "App to provide interface for customer and lead search functionality",
   "main": "server.js",
+  "engines": {
+    "node": "12.20.1"
+  },
   "scripts": {
     "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://git.heroku.com/searchapi11092020.git"
+    "url": "https://git.heroku.com/oneapisearch2021.git"
   },
   "dependencies": {
     "basic-auth": "^2.0.1",
