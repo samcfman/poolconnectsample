@@ -4,7 +4,7 @@
   "description": "App to provide interface for customer and lead search functionality",
   "main": "server.js",
   "engines": {
-    "node": "15.8.0"
+    "node": "12.16.2"
   },
   "scripts": {
     "start": "node server.js"
