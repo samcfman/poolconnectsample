@@ -372,7 +372,7 @@ async function getAccountDealerId (client,market, DealerNDCode, DealerGCCode, De
 	return dealerId;
 }
 
-app.post("/samSearch"), function(req, res) {
+app.post("/leadSearch"), function(req, res) {
 	var reqinput = req.body;
 	console.log ("reqinput ::::" +JSON.stringify(reqinput));
 	var request = reqinput.In_Data;
@@ -382,7 +382,7 @@ app.post("/samSearch"), function(req, res) {
 
 }
 
-app.post("/leadSearch", function(req, res) {
+app.post("/leadSearch1", function(req, res) {
 	
 	
 	var reqinput = req.body;
