@@ -83,9 +83,9 @@ app.post('/leadSearch', function(req, res) {
 	}
 	catch (err) {
 		console.log ('error in leadSearch : ' + err);
-		res.json({error: err})
+		//res.json({error: err})
 	} finally {
-		poolclient.release();
+		//poolclient.release();
 	}		
 
 	res.json({message:'success'});
