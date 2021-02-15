@@ -37,6 +37,45 @@ var server = app.listen(process.env.PORT || 8080, function () {
     console.log("App now running on port", port);
 });
 
-app.post("/leadSearch", function(req, res) {
+app.post('/leadSearch', function(req, res) {
+
+	var reqinput = req.body;
+	console.log ("reqinput ::::" +JSON.stringify(reqinput));
+	var request = reqinput.In_Data;
+	console.log ("request ::::" +request);	
+	var isValidRequest = false;
+
+	try {
+		pool.connect (async (err, poolclient, release) => {
+			if (err) {
+				var errorDetails = 'Error in Pool Connect';
+				console.error ('pool.connect error :' + err );
+				res.send("error in getting pool connect: " + err)
+			}
+			
+			poolConnectionClient = poolclient;
+
+			var metadata;
+			var dealerId;
+
+			var metadataApp = await getMetadataAppFunc (poolclient,request.market, request.applicationName);
+			
+			if(metadataApp.length > 0) {
+				console.log ('metadataApp :' + metadataApp);
+				metadata = metadataApp;
+			}	
+			else {
+				//console.log ('metadataAll :' + metadataAll);
+				metadata = await getMetadataAllCustFunc (poolclient,request.market);
+			}
+
+			if(metadata.length > 0)	
+				isValidRequest = true;				
+		});	
+	}
+	catch (err) {
+		console.log ('error in leadSearch : ' + err);
+	}		
+
 	res.json({message:'success'});
 });
