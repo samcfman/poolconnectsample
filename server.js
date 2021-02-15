@@ -355,7 +355,7 @@ app.post("/leadSearch"), function(req, res) {
 	console.log ("reqinput ::::" +JSON.stringify(reqinput));
 	var request = reqinput.In_Data;
 	console.log ("request ::::" +request);	
-	res.send("success ");
-//	res.json({ messageId: request.messageId, messageStatus: 'Success',errorMessage: 'No Result Found'});	
+	//res.json("success ");
+	res.json({ messageId: request.messageId, messageStatus: 'Success',errorMessage: 'No Result Found'});	
 
 }
