@@ -1664,7 +1664,7 @@ app.post("/leadSearch", function(req, res) {
 				if(searchType.equalsIgnoreCase('SalesconsultantLeads')|| searchType.equalsIgnoreCase('DealerOutletLeads')
               				|| searchType.equalsIgnoreCase('DealerCompanyLeads') || searchType.equalsIgnoreCase('CustomerLeads')){
                               
-                             handleError(res,request.messageId, err, null,err.message);
+                             handleNewError(poolclient, res,request.messageId, err, null,err.message);
 							 //responseMap.put('leadList', OneApi_ErrorHandler.handleErrorMessageWithCategoryWithReqObject((String)requestMap.get('messageId'), exp, null,exp.getMessage()));
                 			 
                             }
