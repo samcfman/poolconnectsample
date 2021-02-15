@@ -11,9 +11,16 @@ app.use(bodyParser.json());
 app.get('/', (request, response) => response.send('Hello World'));
 
 
+var poolConnectionClient;
 
-// set the server to listen on port 3000
-app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+String.prototype.equalsIgnoreCase = function (compareString) 
+	{ return this.toUpperCase() === compareString.toUpperCase(); 
+};
+
+var server = app.listen(process.env.PORT || 8080, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
+});
 
 // ** TUNE **
 /*var poolConnectionClient;
