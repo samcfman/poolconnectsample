@@ -45,7 +45,7 @@ function handleError(res, reason, message, code) {
 const { Client, Pool } = require ('pg');
 const { release } = require("os");
 
-const client = new Client({
+/*const client = new Client({
   connectionString: process.env.DATABASE_URL,
   ssl: { rejectUnauthorized: false }
 });
@@ -59,10 +59,10 @@ client.connect(err => {
     console.log('connected')
   }
 });
-
+*/
 const pool = new Pool ({
 	//connectionString: process.env.DATABASE_URL,
-	connectionString: process.env.HEROKU_POSTGRESQL_BLUE_URL,
+	connectionString: process.env.HEROKU_POSTGRESQL_AMBER_URL,
 	
 	ssl: {
 		rejectUnauthorized: false
@@ -246,7 +246,9 @@ async function getDealerRecord (client,isRetailCopyAtCompanyEnabled, isDealerDef
 	
 }
 
-
+app.post("/samtest", function(req, res) {
+	res.json({ messageStatus: 'Success'});
+});	
 
 app.post("/searchAccount", function(req, res) {
 	
