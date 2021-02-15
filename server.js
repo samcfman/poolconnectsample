@@ -1,16 +1,14 @@
-var express = require("express");
-var path = require("path");
-var bodyParser = require("body-parser");
+const express = require('express');
+const app = express();
+//const port = 3000;
+const PORT = process.env.PORT || 5000;
+const bodyParser = require('body-parser');
 
-var app = express();
-app.use(express.static(__dirname + "/public"));
+//app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
-var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
-
+// url: http://localhost:3000/
+app.get('/', (request, response) => response.send('Hello World'));
 
 // ** TUNE **
 /*var poolConnectionClient;
@@ -356,23 +354,3 @@ async function getAccountDealerId (client,market, DealerNDCode, DealerGCCode, De
 	return dealerId;
 }
 */
-app.post("/leadSearch"), function(req, res) {
-	var reqinput = req.body;
-	console.log ("reqinput ::::" +JSON.stringify(reqinput));
-	var request = reqinput.In_Data;
-	console.log ("request ::::" +request);	
-	//res.json("success ");
-	res.json({ messageId: request.messageId, messageStatus: 'Success',errorMessage: 'No Result Found'});	
-
-}
-
-app.get('/'), function(req, res) {
-	/*var reqinput = req.body;
-	console.log ("reqinput ::::" +JSON.stringify(reqinput));
-	var request = reqinput.In_Data;
-	console.log ("request ::::" +request);	
-	//res.json("success ");*/
-	//res.json({messageStatus: 'Success'});	
-	res.send ('Hello World');
-
-}
