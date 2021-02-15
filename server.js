@@ -85,7 +85,7 @@ app.post('/leadSearch', function(req, res) {
 		console.log ('error in leadSearch : ' + err);
 		//res.json({error: err})
 	} finally {
-		//poolclient.release();
+		release();
 	}		
 
 	res.json({message:'success'});
