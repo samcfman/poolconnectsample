@@ -1601,7 +1601,7 @@ app.post("/leadSearch", function(req, res) {
 				
 				var leadObjString = queryMap.get('leadObjString');
 				
-				client.query(query, param)
+				poolclient.query(query, param)
 				.then(reslead => {
 				var leaddetails =  reslead.rows;
 				//console.log("result from query :::::::::::");	
@@ -1675,13 +1675,13 @@ app.post("/leadSearch", function(req, res) {
 	
 		else {  
 	        var errorDetails = 'Please provide a valid Search type for Lead Search operation (getLeads / getLeadDetails)';
-            handleError(res,request.messageId, null, null,errorDetails);   
+            handleNewError(poolclient, res,request.messageId, null, null,errorDetails);   
          }
 		 
 				}
 				else {  
 								var errorDetails = 'Please provide a valid Search type for Lead Search operation (getLeads / getLeadDetails)';
-								handleError(res,request.messageId, null, null,errorDetails);   
+								handleNewError(poolclient, res,request.messageId, null, null,errorDetails);   
 							}
 		 
 			  } catch (e) {
@@ -1698,6 +1698,8 @@ app.post("/leadSearch", function(req, res) {
 	} 
 	
 });
+
+
 
 
 function handleError(res, messageId, exp, responseCode, errorDescription) {
@@ -1781,6 +1783,86 @@ function handleError(res, messageId, exp, responseCode, errorDescription) {
     })    
 }
 
+function handleNewError(client, res, messageId, exp, responseCode, errorDescription) {
+	console.log("Inside handleError");
+	
+	var errorMap = new Map();
+		  
+		  var errorCategory = null;
+		  if(messageId != null && messageId.length>0){
+			  errorMap.set('messageId',messageId);
+		  }
+		  
+		  errorMap.set('messageStatus','Error');
+				 
+		  if(exp != null){
+			  if((exp.message).includes('unexpected token')){
+				  errorMap.set('errorMessage','Metadata configuration is not inline with the Request payload, please verify metadata configuration.');
+			  }else {
+				  errorMap.set('errorMessage',exp.message);
+			  }
+		  }else {
+			  errorMap.set('errorMessage',errorDescription);
+		  }     
+		  
+		  const query = 'select sfid,name,Error_Categorization__c,Error_Description__c from herokusbox.error_code_mapping_obj__c';
+		  const param = [];
+	  
+		  client.query(query, param)
+		  .then(reserror => {
+			  var ecmList = reserror.rows;
+		  
+		  //list<Error_Codes_Mapping__mdt> ecm_List = [select id,MasterLabel,Error_Categorization__c,Error_Description__c from Error_Codes_Mapping__mdt];  
+		  
+		  
+		  var codeDetailsFound = false;
+		  
+		  if(responseCode != null && responseCode.length>0){            
+			  for(let ecm of ecmList){
+				  if(ecm.name != null && (ecm.name).length>0 && ecm.name.trim().equalsIgnoreCase(responseCode)){                    
+					  errorCategory = ecm.error_categorization__c;
+					  errorMap.set('errorCode',ecm.name);
+					  errorMap.set('errorCategory',errorCategory);
+					  codeDetailsFound = true;
+				  }
+			  }            
+		  }else if(errorDescription != null && errorDescription.length>0){
+			  for(let ecm of ecmList){
+				  if(ecm.error_description__c != null && (ecm.error_description__c).length>0 && ecm.error_description__c.includes(errorDescription)){
+					  errorCategory = ecm.error_categorization__c;
+					  errorMap.set('errorCode',ecm.name);
+					  errorMap.set('errorCategory',errorCategory);
+					  codeDetailsFound = true;
+				  }
+			  }            
+		  }else{
+			  for(let ecm of ecmList){
+				  if(ecm.name != null && (ecm.name).length>0 && ecm.name.equalsIgnoreCase('Unknown')){
+					  errorCategory = ecm.error_categorization__c;
+					  errorMap.set('errorCode',ecm.name);
+					  errorMap.set('errorCategory',errorCategory);
+					  codeDetailsFound = true;
+				  }
+			  }            
+		  }
+		  console.log('codeDetailsFound===================>'+codeDetailsFound);
+		  //If no error code and category found then set "Unknown" as default
+		  if(codeDetailsFound == false) {
+			  errorMap.set('errorCode','Unknown');
+			  errorMap.set('errorCategory','Unknown');
+		  }
+		  console.log('errorMap===================>'+errorMap);
+		  
+		  var newList = [];					
+		  newList.push(Object.fromEntries(errorMap));
+				  
+				  let response = {leadList: newList, toString() {
+										  return '{leadList: ${this.leadList}}';
+										}
+									  };	
+									  res.json(response);
+	  })    
+  }
 
 function handleErrorMessageWithCategory(res, messageId, exp, responseCode, errorDescription){
         
