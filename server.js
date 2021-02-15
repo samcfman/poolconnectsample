@@ -59,34 +59,40 @@ app.post('/leadSearch', function(req, res) {
 				res.send("error in getting pool connect: " + err)
 			}
 			
-			poolConnectionClient = poolclient;
-
-			var metadata;
-			var dealerId;
-
-			var metadataApp = await getMetadataAppFunc (poolclient,request.market, request.applicationName);
+			try {
+				poolConnectionClient = poolclient;
+				var metadata;
+				var dealerId;
+				var metadataApp = await getMetadataAppFunc (poolclient,request.market, request.applicationName);
 			
-			if(metadataApp.length > 0) {
-				console.log ('metadataApp :' + metadataApp);
-				metadata = metadataApp;
-			}	
-			else {
-				//console.log ('metadataAll :' + metadataAll);
-				metadata = await getMetadataAllCustFunc (poolclient,request.market);
+				if(metadataApp.length > 0) {
+					console.log ('metadataApp :' + metadataApp);
+					metadata = metadataApp;
+				}	
+				else {
+					//console.log ('metadataAll :' + metadataAll);
+					metadata = await getMetadataAllCustFunc (poolclient,request.market);
+				}
+	
+				if(metadata.length > 0)	{
+					isValidRequest = true;
+					console.log ('metedata found : ' + metadata);
+				}					
+							
 			}
-
-			if(metadata.length > 0)	{
-				isValidRequest = true;
-				console.log ('metedata found : ' + metadata);
-			}					
+			catch (error) {
+				console.log ('error in leadSearch : ' + error);
+			}
+			finally {
+				release ();
+			}
 		});	
 	}
 	catch (err) {
 		console.log ('error in leadSearch : ' + err);
 		//res.json({error: err})
-	} finally {
-		release();
-	}		
+	}	
+
 
 	res.json({message:'success'});
 });
