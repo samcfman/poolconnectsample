@@ -77,13 +77,12 @@ module.exports.client = poolConnectionClient;
 
 function basicAuth(req, res, cb) {
 
-	return next();
-	
 	console.log('Inside basic auth:::::::::::');
     // make authenticate path public
     if (req.path === '/users/authenticate') {
         return next();
     }
+	return cb(null, true);
 
     // check for basic auth header
     if (!req.headers.authorization || req.headers.authorization.indexOf('Basic ') === -1) {
