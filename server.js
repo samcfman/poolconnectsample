@@ -83,6 +83,9 @@ app.post('/leadSearch', function(req, res) {
 	}
 	catch (err) {
 		console.log ('error in leadSearch : ' + err);
+		res.json({error: err})
+	} finally {
+		poolclient.release();
 	}		
 
 	res.json({message:'success'});
@@ -101,6 +104,8 @@ async function getMetadataAppFunc (client,market, applicationName) {
 	if (cacheMetaDataApp === undefined) { 
 		const result = await client.query(getMetadata, paramsMetadata);
 	//	console.log ('SAM: metedataapp cache load');
+
+		console.log ('metadataAppfunc' + JSON.stringify(result));
 		cacheMetaDataApp = result.rows;
 		cacheMetaDataAppMap.set (cacheKey, cacheMetaDataApp);		
 	} else {
@@ -120,6 +125,7 @@ async function getMetadataAllCustFunc (client,market) {
 	if (cacheMetaDataAll === undefined) {
 		const result = await client.query(getMetadataAll, paramsMetadataAll);
 	//	console.log ('SAM: metedataall cache load');
+	console.log ('getMetadataAllCustFunc' + JSON.stringify(result));
 		cacheMetaDataAll = result.rows;
 		cacheMetaDataAllCustomerMap.set (cacheKey, cacheMetaDataAll);
 	} else {
