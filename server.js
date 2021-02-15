@@ -372,6 +372,7 @@ app.get('/'), function(req, res) {
 	var request = reqinput.In_Data;
 	console.log ("request ::::" +request);	
 	//res.json("success ");*/
-	res.json({messageStatus: 'Success'});	
+	//res.json({messageStatus: 'Success'});	
+	res.send ('Hello World');
 
 }
