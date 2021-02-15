@@ -38,5 +38,5 @@ var server = app.listen(process.env.PORT || 8080, function () {
 });
 
 app.post("/leadSearch", function(req, res) {
-	res.response({message:'success'});
+	res.json({message:'success'});
 });
