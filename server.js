@@ -19,8 +19,6 @@ const pool = new Pool ({
 //module.exports.client = client;
 module.exports.client = poolConnectionClient;
 
-
-
 //app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
 
@@ -39,7 +37,9 @@ var server = app.listen(process.env.PORT || 8080, function () {
     console.log("App now running on port", port);
 });
 
-
+app.post("/leadSearch", function(req, res) {
+	res.response({message:'success'});
+}
 // ** TUNE **
 /*var poolConnectionClient;
 
