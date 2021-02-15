@@ -372,6 +372,6 @@ app.get("/"), function(req, res) {
 	var request = reqinput.In_Data;
 	console.log ("request ::::" +request);	
 	//res.json("success ");*/
-	res.json({ messageId: request.messageId, messageStatus: 'Success',errorMessage: 'No Result Found'});	
+	res.json({messageStatus: 'Success'});	
 
 }
