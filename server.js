@@ -10,6 +10,11 @@ app.use(bodyParser.json());
 // url: http://localhost:3000/
 app.get('/', (request, response) => response.send('Hello World'));
 
+
+
+// set the server to listen on port 3000
+app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
+
 // ** TUNE **
 /*var poolConnectionClient;
 
