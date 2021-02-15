@@ -7,7 +7,7 @@ app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
 // ** TUNE **
-var poolConnectionClient;
+/*var poolConnectionClient;
 
 String.prototype.equalsIgnoreCase = function (compareString) 
 	{ return this.toUpperCase() === compareString.toUpperCase(); 
@@ -349,7 +349,7 @@ async function getAccountDealerId (client,market, DealerNDCode, DealerGCCode, De
 	
 	return dealerId;
 }
-
+*/
 app.post("/leadSearch"), function(req, res) {
 	var reqinput = req.body;
 	console.log ("reqinput ::::" +JSON.stringify(reqinput));
