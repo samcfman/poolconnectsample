@@ -75,8 +75,10 @@ app.post('/leadSearch', function(req, res) {
 				metadata = await getMetadataAllCustFunc (poolclient,request.market);
 			}
 
-			if(metadata.length > 0)	
-				isValidRequest = true;				
+			if(metadata.length > 0)	{
+				isValidRequest = true;
+				console.log ('metedata found');
+			}					
 		});	
 	}
 	catch (err) {
