@@ -77,7 +77,7 @@ app.post('/leadSearch', function(req, res) {
 
 			if(metadata.length > 0)	{
 				isValidRequest = true;
-				console.log ('metedata found');
+				console.log ('metedata found : ' + metadata);
 			}					
 		});	
 	}
