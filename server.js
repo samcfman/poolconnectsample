@@ -359,3 +359,13 @@ app.post("/leadSearch"), function(req, res) {
 	res.json({ messageId: request.messageId, messageStatus: 'Success',errorMessage: 'No Result Found'});	
 
 }
+
+app.get("/"), function(req, res) {
+	/*var reqinput = req.body;
+	console.log ("reqinput ::::" +JSON.stringify(reqinput));
+	var request = reqinput.In_Data;
+	console.log ("request ::::" +request);	
+	//res.json("success ");*/
+	res.json({ messageId: request.messageId, messageStatus: 'Success',errorMessage: 'No Result Found'});	
+
+}
