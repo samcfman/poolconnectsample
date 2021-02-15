@@ -366,7 +366,7 @@ app.post("/leadSearch"), function(req, res) {
 
 }
 
-app.get("/"), function(req, res) {
+app.get('/'), function(req, res) {
 	/*var reqinput = req.body;
 	console.log ("reqinput ::::" +JSON.stringify(reqinput));
 	var request = reqinput.In_Data;
